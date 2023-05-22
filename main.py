@@ -32,7 +32,14 @@ if __name__ == '__main__':
 
 
 def parse_cookie(query: str) -> dict:
-    return {}
+    if not query:
+        return {}
+    else:
+        devided_result = query_part.strip(';').split(';')
+        devided_result_parts_list = [item.split('=') for item in devided_result]
+        devided_result_dict = {item: value for item, value in devided_result_parts_list}
+
+    return devided_result_dict
 
 if __name__ == '__main__':
     assert parse_cookie('name=Dima;') == {'name': 'Dima'}
